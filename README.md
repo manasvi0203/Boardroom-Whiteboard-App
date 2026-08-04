@@ -1,84 +1,222 @@
-# Boardroom — Collaborative Whiteboard (MERN + Socket.IO)
+# 🖍️ BoardRoom - Real-Time Collaborative Whiteboard
 
-A real-time collaborative whiteboard: MongoDB, Express, React, Node, and
-Socket.IO, with drawing powered by [fabric.js](http://fabricjs.com/).
+A full-stack collaborative whiteboard application that enables multiple users to draw, edit, and collaborate in real time. Built using the MERN stack, Socket.IO, and Fabric.js, BoardRoom provides a smooth and interactive whiteboard experience with secure authentication and persistent storage.
 
-## Features implemented
+---
 
-- **Auth** — register/login (JWT), logout, edit profile (name/email)
-- **Whiteboards** — create, list, rename, delete, share by email
-- **Drawing tools** — pen, eraser, line, rectangle, circle, text, color picker, brush size
-- **Canvas** — zoom in/out (buttons + scroll), pan tool, clear board, large pannable/zoomable canvas
-- **Object editing** — select, move, resize, delete (select tool + Delete/Backspace key)
-- **Real-time collaboration** — shared board rooms, simultaneous drawing, live collaborator cursors, active-collaborator avatars
-- **Undo/redo** — per-tab history stack (Ctrl/Cmd+Z, Ctrl/Cmd+Shift+Z)
-- **Autosave** — debounced save to MongoDB; reopening a board restores the last saved state
-- **Export** — PNG and PDF, rendering the full board content (not just the visible viewport)
+## 🚀 Features
 
-## Project layout
+- 🎨 Real-time collaborative drawing using Socket.IO
+- ✏️ Freehand drawing
+- ⬛ Shapes (Rectangle, Circle, Line, Arrow)
+- 📝 Text tool
+- 🎨 Color picker & brush size customization
+- 🧽 Eraser tool
+- ↩️ Undo / Redo functionality
+- 💾 Automatic board saving
+- 🔐 JWT-based Authentication
+- 👥 Multi-user collaboration
+- 📱 Responsive interface
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- React.js
+- Vite
+- Tailwind CSS
+- Fabric.js
+- Axios
+
+### Backend
+- Node.js
+- Express.js
+- Socket.IO
+- MongoDB
+- Mongoose
+- JWT Authentication
+- bcrypt.js
+
+---
+
+## 📂 Project Structure
 
 ```
-backend/    Express API + Socket.IO server + MongoDB models
-frontend/   React app (Create React App)
+WHITEBOARD-APP
+│
+├── backend
+│   ├── config
+│   ├── controllers
+│   ├── middleware
+│   ├── models
+│   ├── routes
+│   ├── sockets
+│   ├── server.js
+│   └── package.json
+│
+├── frontend
+│   ├── public
+│   ├── src
+│   └── package.json
+│
+├── .gitignore
+└── README.md
 ```
 
-## Running locally
+---
 
-### 1. MongoDB
-Have a MongoDB instance running (local `mongod`, Docker, or Atlas) and note its connection string.
+## ⚙️ Installation
 
-### 2. Backend
+### Clone the repository
+
+```bash
+git clone https://github.com/your-username/boardroom-collaborative-whiteboard.git
+
+cd boardroom-collaborative-whiteboard
+```
+
+### Install Backend Dependencies
 
 ```bash
 cd backend
-cp .env.example .env     # then fill in MONGO_URI and a strong JWT_SECRET
 npm install
-npm run dev               # nodemon, http://localhost:5000
 ```
 
-### 3. Frontend
+### Install Frontend Dependencies
+
+```bash
+cd ../frontend
+npm install
+```
+
+---
+
+## 🔑 Environment Variables
+
+### Backend (`backend/.env`)
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+CLIENT_URL=http://localhost:5173
+```
+
+### Frontend (`frontend/.env`)
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+---
+
+## ▶️ Running the Application
+
+### Start Backend
+
+```bash
+cd backend
+npm run dev
+```
+
+### Start Frontend
 
 ```bash
 cd frontend
-cp .env.example .env      # defaults already point at localhost:5000
-npm install
-npm start                 # http://localhost:3000
+npm run dev
 ```
 
-Open the app in two browser windows (or two browsers) signed in as different
-users, share a board between them, and draw — changes and cursors sync live.
+Visit:
 
-## How the real-time sync works
+```
+http://localhost:5173
+```
 
-- Socket.IO connections authenticate with the same JWT issued at login.
-- Joining a board (`board:join`) puts the socket in a `board:<id>` room and
-  broadcasts the updated collaborator/presence list.
-- On any local canvas change, the client serializes the whole fabric.js
-  canvas to JSON and emits `canvas:update` (throttled ~120ms); other clients
-  in the room load that JSON into their own canvas.
-- Cursor positions are broadcast on `cursor:move` (throttled ~60ms) in canvas
-  world coordinates, then re-projected to each viewer's own screen/zoom via
-  fabric's viewport transform.
-- Whole-canvas JSON sync is simple and robust for a project like this, at the
-  cost of some bandwidth versus a diff/operation-based CRDT approach — a
-  reasonable trade-off outside of very large boards or huge concurrent
-  editor counts.
+---
 
-## Known simplifications (things a production version should harden)
+## 📸 Screenshots
 
-- **Eraser** is implemented as a white freehand brush stroke, not a true
-  pixel/object eraser — simplest approach without pulling in an extra fabric
-  add-on, but it will only look correct on a plain white background.
-- **Undo/redo** is local to each tab/session (based on full-canvas snapshots)
-  rather than a shared, per-user operation history — concurrent undo across
-  multiple users is not conflict-free.
-- **Conflict resolution** uses "last write wins" full-canvas snapshots rather
-  than operational transforms/CRDTs, which is fine at small team scale but
-  can drop intermediate strokes under heavy simultaneous editing.
-- No automated test suite is included; see `backend` and `frontend` for
-  manual test steps above.
+Add screenshots of your application here.
 
-## Tech stack
+```
+screenshots/
+├── login.png
+├── dashboard.png
+├── whiteboard.png
+└── collaboration.png
+```
 
-- **Backend**: Node.js, Express, MongoDB/Mongoose, Socket.IO, JWT, bcryptjs
-- **Frontend**: React, React Router, fabric.js, socket.io-client, jsPDF, axios
+Example:
+
+```md
+![Login](screenshots/login.png)
+
+![Whiteboard](screenshots/whiteboard.png)
+```
+
+---
+
+## 🔮 Future Enhancements
+
+- Video & Voice Collaboration
+- Sticky Notes
+- Image Upload
+- Infinite Canvas
+- Board Sharing via Invite Links
+- Export as PNG/PDF
+- Version History
+- Cursor Presence Indicators
+
+---
+
+## 📖 Learning Highlights
+
+This project demonstrates:
+
+- Real-time communication with Socket.IO
+- Canvas manipulation using Fabric.js
+- REST API development with Express.js
+- JWT Authentication & Authorization
+- MongoDB database integration
+- State management in React
+- Full-stack application architecture
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository
+2. Create a feature branch
+
+```bash
+git checkout -b feature-name
+```
+
+3. Commit your changes
+
+```bash
+git commit -m "Add feature"
+```
+
+4. Push to GitHub
+
+```bash
+git push origin feature-name
+```
+
+5. Open a Pull Request
+
+---
+
+## 👩‍💻 Author
+
+**Manasvi Arora**
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
