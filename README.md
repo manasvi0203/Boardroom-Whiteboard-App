@@ -1,26 +1,26 @@
-# 🖍️ BoardRoom - Real-Time Collaborative Whiteboard
+# BoardRoom - Real-Time Collaborative Whiteboard
 
 A full-stack collaborative whiteboard application that enables multiple users to draw, edit, and collaborate in real time. Built using the MERN stack, Socket.IO, and Fabric.js, BoardRoom provides a smooth and interactive whiteboard experience with secure authentication and persistent storage.
 
 ---
 
-## 🚀 Features
+## Features
 
-- 🎨 Real-time collaborative drawing using Socket.IO
-- ✏️ Freehand drawing
-- ⬛ Shapes (Rectangle, Circle, Line, Arrow)
-- 📝 Text tool
-- 🎨 Color picker & brush size customization
-- 🧽 Eraser tool
-- ↩️ Undo / Redo functionality
-- 💾 Automatic board saving
-- 🔐 JWT-based Authentication
-- 👥 Multi-user collaboration
-- 📱 Responsive interface
+- Real-time collaborative drawing using Socket.IO
+- Freehand drawing
+- Shapes (Rectangle, Circle, Line, Arrow)
+- Text tool
+- Color picker & brush size customization
+- Eraser tool
+- Undo / Redo functionality
+- Automatic board saving
+- JWT-based Authentication
+- Multi-user collaboration
+- Responsive interface
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - React.js
@@ -40,7 +40,7 @@ A full-stack collaborative whiteboard application that enables multiple users to
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 WHITEBOARD-APP
@@ -66,7 +66,7 @@ WHITEBOARD-APP
 
 ---
 
-## ⚙️ Installation
+## Installation
 
 ### Clone the repository
 
@@ -92,7 +92,7 @@ npm install
 
 ---
 
-## 🔑 Environment Variables
+## Environment Variables
 
 ### Backend (`backend/.env`)
 
@@ -111,7 +111,7 @@ VITE_API_URL=http://localhost:5000
 
 ---
 
-## ▶️ Running the Application
+## Running the Application
 
 ### Start Backend
 
@@ -135,29 +135,7 @@ http://localhost:5173
 
 ---
 
-## 📸 Screenshots
-
-Add screenshots of your application here.
-
-```
-screenshots/
-├── login.png
-├── dashboard.png
-├── whiteboard.png
-└── collaboration.png
-```
-
-Example:
-
-```md
-![Login](screenshots/login.png)
-
-![Whiteboard](screenshots/whiteboard.png)
-```
-
----
-
-## 🔮 Future Enhancements
+## Future Enhancements
 
 - Video & Voice Collaboration
 - Sticky Notes
@@ -170,7 +148,7 @@ Example:
 
 ---
 
-## 📖 Learning Highlights
+## Learning Highlights
 
 This project demonstrates:
 
@@ -184,7 +162,7 @@ This project demonstrates:
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome!
 
@@ -211,7 +189,7 @@ git push origin feature-name
 
 ---
 
-## 👩‍💻 Author
+## Author
 
 **Manasvi Arora**
 
